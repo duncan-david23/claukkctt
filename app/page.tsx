@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Space_Grotesk, Inter, JetBrains_Mono } from 'next/font/google'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -155,9 +155,10 @@ function Hero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const words = headlineRef.current?.querySelectorAll('.word')
+      const words = headlineRef.current?.querySelectorAll('.word') || []
       const perfDots = perfRef.current ? Array.from(perfRef.current.children) : []
       const chips = chipsRef.current ? Array.from(chipsRef.current.children) : []
+      const ctaChildren = ctaRef.current ? Array.from(ctaRef.current.children) : []
 
       const tl = gsap.timeline({ defaults: { ease: 'power4.out' } })
 
@@ -179,7 +180,7 @@ function Hero() {
           '-=0.4'
         )
         .from(chips, { opacity: 0, scale: 0.7, y: 10, duration: 0.5, stagger: 0.08, ease: 'back.out(2)' }, '-=0.3')
-        .from(ctaRef.current ? Array.from(ctaRef.current.children) : [], { opacity: 0, y: 16, duration: 0.5, stagger: 0.08 }, '-=0.25')
+        .from(ctaChildren, { opacity: 0, y: 16, duration: 0.5, stagger: 0.08 }, '-=0.25')
         .from(perfDots, { scaleX: 0, transformOrigin: 'left', duration: 0.5, stagger: 0.008 }, '-=0.6')
 
       // subtle continuous jiggle on the receipt, like it's still hanging from the printer
@@ -892,7 +893,7 @@ function DownloadCTA() {
 
 function ApkButton() {
   return (
-    <a href="/https://pub-c31f39f392544e268f886d98016543b3.r2.dev/claukkcart.apk" className="flex items-center gap-3 rounded-xl bg-[#163300] px-5 py-3 transition hover:bg-[#0D1B00]">
+    <a href="https://pub-c31f39f392544e268f886d98016543b3.r2.dev/claukkcart.apk" className="flex items-center gap-3 rounded-xl bg-[#163300] px-5 py-3 transition hover:bg-[#0D1B00]">
       <DownloadIcon className="h-5 w-5 text-[#9FE870]" />
       <span className="text-left leading-tight">
         <span className="block font-[family-name:var(--font-mono)] text-[9px] font-semibold uppercase tracking-wide text-[#9FE870]/70">
