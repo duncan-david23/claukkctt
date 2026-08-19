@@ -35,6 +35,50 @@ export default function Home() {
 }
 
 /* ════════════════════════════════════════════════════════════════════════
+   ICONS
+   ════════════════════════════════════════════════════════════════════════ */
+
+function CheckIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className}>
+      <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function PlusIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className}>
+      <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+function DownloadIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className}>
+      <path d="M12 4v11m0 0l-4-4m4 4l4-4M5 19h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function PlayIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M5 3.5v17l15-8.5-15-8.5z" />
+    </svg>
+  )
+}
+
+function AppleIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M16.7 12.3c0-2.6 2.1-3.8 2.2-3.9-1.2-1.7-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.1 2.5-1.8 3-.5 7.5 1.3 10 .8 1.2 1.8 2.6 3.1 2.5 1.2-.1 1.7-.8 3.2-.8s1.9.8 3.3.8c1.4 0 2.3-1.2 3.1-2.5.7-1 1.1-2 1.4-2.9-1.9-.8-3.6-2.6-3.6-4.7zM14.2 4.6c.7-.8 1.1-2 1-3.1-1 .1-2.1.7-2.8 1.5-.6.7-1.1 1.9-1 3 1.1.1 2.1-.5 2.8-1.4z" />
+    </svg>
+  )
+}
+
+/* ════════════════════════════════════════════════════════════════════════
    SPLIT WORDS — for GSAP headline reveals
    ════════════════════════════════════════════════════════════════════════ */
 
@@ -92,6 +136,53 @@ function Magnetic({ children, strength = 0.35 }: { children: React.ReactNode; st
 }
 
 /* ════════════════════════════════════════════════════════════════════════
+   STORE BUTTONS
+   ════════════════════════════════════════════════════════════════════════ */
+
+function ApkButton() {
+  return (
+    <a href="https://pub-c31f39f392544e268f886d98016543b3.r2.dev/claukkcart.apk" className="flex items-center gap-3 rounded-xl bg-[#163300] px-5 py-3 transition hover:bg-[#0D1B00]">
+      <DownloadIcon className="h-5 w-5 text-[#9FE870]" />
+      <span className="text-left leading-tight">
+        <span className="block font-[family-name:var(--font-mono)] text-[9px] font-semibold uppercase tracking-wide text-[#9FE870]/70">
+          Direct install
+        </span>
+        <span className="block text-[13.5px] font-bold text-[#9FE870]">Download APK</span>
+      </span>
+    </a>
+  )
+}
+
+function PlayStoreButton({ compact }: { compact?: boolean }) {
+  return (
+    <a href="https://play.google.com/store/apps/details?id=com.claukkcart" className="flex items-center gap-2.5 rounded-xl bg-[#0D1B00] px-4 py-3 transition hover:bg-black">
+      <PlayIcon className="h-5 w-5 text-white" />
+      <span className="text-left leading-tight">
+        <span className="block font-[family-name:var(--font-mono)] text-[9px] font-semibold uppercase tracking-wide text-white/55">Get it on</span>
+        <span className="block text-[13px] font-bold text-white">Google Play</span>
+      </span>
+    </a>
+  )
+}
+
+function AppStoreButton({ compact }: { compact?: boolean }) {
+  return (
+    <a
+      href="https://apps.apple.com/app/claukkcart"
+      className="flex items-center gap-2.5 rounded-xl border-2 border-[#0D1B00] px-4 py-3 transition hover:bg-[#0D1B00] hover:[&_*]:text-white"
+    >
+      <AppleIcon className="h-5 w-5 text-[#0D1B00]" />
+      <span className="text-left leading-tight">
+        <span className="block font-[family-name:var(--font-mono)] text-[9px] font-semibold uppercase tracking-wide text-[#0D1B00]/50">
+          Download on the
+        </span>
+        <span className="block text-[13px] font-bold text-[#0D1B00]">App Store</span>
+      </span>
+    </a>
+  )
+}
+
+/* ════════════════════════════════════════════════════════════════════════
    HEADER
    ════════════════════════════════════════════════════════════════════════ */
 
@@ -143,6 +234,40 @@ function Header() {
 }
 
 /* ════════════════════════════════════════════════════════════════════════
+   TORN EDGE & DOT GRID — shared UI elements
+   ════════════════════════════════════════════════════════════════════════ */
+
+function DotGrid() {
+  return (
+    <div
+      className="pointer-events-none absolute inset-0"
+      style={{
+        backgroundImage: 'radial-gradient(circle, #0D1B00 1px, transparent 1px)',
+        backgroundSize: '28px 28px',
+        maskImage: 'linear-gradient(to bottom, black, transparent 85%)',
+        WebkitMaskImage: 'linear-gradient(to bottom, black, transparent 85%)',
+        opacity: 0.06,
+      }}
+    />
+  )
+}
+
+function TornEdge({ color = '#F2F0E4' }: { color?: string }) {
+  return (
+    <div
+      className="h-3 w-full rounded-t-2xl"
+      style={{
+        backgroundImage: `linear-gradient(-45deg, ${color} 6px, transparent 0), linear-gradient(45deg, ${color} 6px, transparent 0)`,
+        backgroundPosition: 'left bottom',
+        backgroundSize: '12px 12px',
+        backgroundRepeat: 'repeat-x',
+        backgroundColor: 'white',
+      }}
+    />
+  )
+}
+
+/* ════════════════════════════════════════════════════════════════════════
    HERO — receipt prints out of a slot, headline flips in letter-by-word
    ════════════════════════════════════════════════════════════════════════ */
 
@@ -162,7 +287,6 @@ function Hero() {
 
       const tl = gsap.timeline({ defaults: { ease: 'power4.out' } })
 
-      // the receipt physically prints out of the top edge
       tl.fromTo(
         cardRef.current,
         { clipPath: 'inset(0 0 100% 0)', y: -60 },
@@ -183,7 +307,6 @@ function Hero() {
         .from(ctaChildren, { opacity: 0, y: 16, duration: 0.5, stagger: 0.08 }, '-=0.25')
         .from(perfDots, { scaleX: 0, transformOrigin: 'left', duration: 0.5, stagger: 0.008 }, '-=0.6')
 
-      // subtle continuous jiggle on the receipt, like it's still hanging from the printer
       gsap.to(cardRef.current, {
         rotate: 0.6,
         duration: 3.2,
@@ -270,36 +393,6 @@ function Hero() {
   )
 }
 
-function DotGrid() {
-  return (
-    <div
-      className="pointer-events-none absolute inset-0"
-      style={{
-        backgroundImage: 'radial-gradient(circle, #0D1B00 1px, transparent 1px)',
-        backgroundSize: '28px 28px',
-        maskImage: 'linear-gradient(to bottom, black, transparent 85%)',
-        WebkitMaskImage: 'linear-gradient(to bottom, black, transparent 85%)',
-        opacity: 0.06,
-      }}
-    />
-  )
-}
-
-function TornEdge({ color = '#F2F0E4' }: { color?: string }) {
-  return (
-    <div
-      className="h-3 w-full rounded-t-2xl"
-      style={{
-        backgroundImage: `linear-gradient(-45deg, ${color} 6px, transparent 0), linear-gradient(45deg, ${color} 6px, transparent 0)`,
-        backgroundPosition: 'left bottom',
-        backgroundSize: '12px 12px',
-        backgroundRepeat: 'repeat-x',
-        backgroundColor: 'white',
-      }}
-    />
-  )
-}
-
 /* ── Phone: entrance flip, idle float, mouse-tracked 3D tilt ── */
 
 function PhoneShowcase() {
@@ -333,13 +426,9 @@ function PhoneShowcase() {
           '-=0.6'
         )
 
-      // idle bob, independent axis from tilt
       gsap.to(phoneRef.current, { y: -14, duration: 2.6, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1.4 })
-
-      // continuous gentle float on the exported-receipt card
       gsap.to(floatCardRef.current, { y: -8, duration: 2.2, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 2 })
 
-      // mouse-tracked parallax tilt
       const wrap = wrapRef.current
       if (wrap) {
         const rotY = gsap.quickTo(phoneRef.current, 'rotateY', { duration: 0.7, ease: 'power3' })
@@ -740,6 +829,31 @@ function HowItWorks() {
    LEDGER — GSAP number counters + torn-stub entrance
    ════════════════════════════════════════════════════════════════════════ */
 
+function Stub({
+  label,
+  valueRef,
+  tone,
+}: {
+  label: string
+  valueRef: React.RefObject<HTMLParagraphElement | null>
+  tone: 'saved' | 'over'
+}) {
+  const good = tone === 'saved'
+  return (
+    <div className="rounded-2xl bg-white p-1">
+      <TornEdge color="white" />
+      <div className="rounded-b-xl px-5 pb-5 pt-1 text-left">
+        <p className={`font-[family-name:var(--font-mono)] text-[10.5px] font-bold uppercase tracking-wide ${good ? 'text-[#27500A]' : 'text-[#C0392B]'}`}>
+          {label}
+        </p>
+        <p ref={valueRef} className={`mt-1 font-[family-name:var(--font-mono)] text-[28px] font-bold ${good ? 'text-[#163300]' : 'text-[#C0392B]'}`}>
+          ₵0.00
+        </p>
+      </div>
+    </div>
+  )
+}
+
 function Ledger() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const savedRef = useRef<HTMLParagraphElement>(null)
@@ -812,31 +926,6 @@ function Ledger() {
   )
 }
 
-function Stub({
-  label,
-  valueRef,
-  tone,
-}: {
-  label: string
-  valueRef: React.RefObject<HTMLParagraphElement>
-  tone: 'saved' | 'over'
-}) {
-  const good = tone === 'saved'
-  return (
-    <div className="rounded-2xl bg-white p-1">
-      <TornEdge color="white" />
-      <div className="rounded-b-xl px-5 pb-5 pt-1 text-left">
-        <p className={`font-[family-name:var(--font-mono)] text-[10.5px] font-bold uppercase tracking-wide ${good ? 'text-[#27500A]' : 'text-[#C0392B]'}`}>
-          {label}
-        </p>
-        <p ref={valueRef} className={`mt-1 font-[family-name:var(--font-mono)] text-[28px] font-bold ${good ? 'text-[#163300]' : 'text-[#C0392B]'}`}>
-          ₵0.00
-        </p>
-      </div>
-    </div>
-  )
-}
-
 /* ════════════════════════════════════════════════════════════════════════
    DOWNLOAD CTA
    ════════════════════════════════════════════════════════════════════════ */
@@ -888,53 +977,6 @@ function DownloadCTA() {
 }
 
 /* ════════════════════════════════════════════════════════════════════════
-   STORE BUTTONS
-   ════════════════════════════════════════════════════════════════════════ */
-
-function ApkButton() {
-  return (
-    <a href="https://pub-c31f39f392544e268f886d98016543b3.r2.dev/claukkcart.apk" className="flex items-center gap-3 rounded-xl bg-[#163300] px-5 py-3 transition hover:bg-[#0D1B00]">
-      <DownloadIcon className="h-5 w-5 text-[#9FE870]" />
-      <span className="text-left leading-tight">
-        <span className="block font-[family-name:var(--font-mono)] text-[9px] font-semibold uppercase tracking-wide text-[#9FE870]/70">
-          Direct install
-        </span>
-        <span className="block text-[13.5px] font-bold text-[#9FE870]">Download APK</span>
-      </span>
-    </a>
-  )
-}
-
-function PlayStoreButton({ compact }: { compact?: boolean }) {
-  return (
-    <a href="https://play.google.com/store/apps/details?id=com.claukkcart" className="flex items-center gap-2.5 rounded-xl bg-[#0D1B00] px-4 py-3 transition hover:bg-black">
-      <PlayIcon className="h-5 w-5 text-white" />
-      <span className="text-left leading-tight">
-        <span className="block font-[family-name:var(--font-mono)] text-[9px] font-semibold uppercase tracking-wide text-white/55">Get it on</span>
-        <span className="block text-[13px] font-bold text-white">Google Play</span>
-      </span>
-    </a>
-  )
-}
-
-function AppStoreButton({ compact }: { compact?: boolean }) {
-  return (
-    <a
-      href="https://apps.apple.com/app/claukkcart"
-      className="flex items-center gap-2.5 rounded-xl border-2 border-[#0D1B00] px-4 py-3 transition hover:bg-[#0D1B00] hover:[&_*]:text-white"
-    >
-      <AppleIcon className="h-5 w-5 text-[#0D1B00]" />
-      <span className="text-left leading-tight">
-        <span className="block font-[family-name:var(--font-mono)] text-[9px] font-semibold uppercase tracking-wide text-[#0D1B00]/50">
-          Download on the
-        </span>
-        <span className="block text-[13px] font-bold text-[#0D1B00]">App Store</span>
-      </span>
-    </a>
-  )
-}
-
-/* ════════════════════════════════════════════════════════════════════════
    FOOTER
    ════════════════════════════════════════════════════════════════════════ */
 
@@ -953,46 +995,6 @@ function Footer() {
         </p>
       </div>
     </footer>
-  )
-}
-
-/* ════════════════════════════════════════════════════════════════════════
-   ICONS
-   ════════════════════════════════════════════════════════════════════════ */
-
-function CheckIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" className={className}>
-      <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  )
-}
-function PlusIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" className={className}>
-      <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-    </svg>
-  )
-}
-function DownloadIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" className={className}>
-      <path d="M12 4v11m0 0l-4-4m4 4l4-4M5 19h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  )
-}
-function PlayIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path d="M5 3.5v17l15-8.5-15-8.5z" />
-    </svg>
-  )
-}
-function AppleIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path d="M16.7 12.3c0-2.6 2.1-3.8 2.2-3.9-1.2-1.7-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.1 2.5-1.8 3-.5 7.5 1.3 10 .8 1.2 1.8 2.6 3.1 2.5 1.2-.1 1.7-.8 3.2-.8s1.9.8 3.3.8c1.4 0 2.3-1.2 3.1-2.5.7-1 1.1-2 1.4-2.9-1.9-.8-3.6-2.6-3.6-4.7zM14.2 4.6c.7-.8 1.1-2 1-3.1-1 .1-2.1.7-2.8 1.5-.6.7-1.1 1.9-1 3 1.1.1 2.1-.5 2.8-1.4z" />
-    </svg>
   )
 }
 
